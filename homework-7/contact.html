@@ -6,6 +6,14 @@
         <meta charset="UTF-8">
         <meta name="author" content="Beau Goldberg">
         <meta name="description" content="Contact form for the user">
+        <style>
+            body {
+                background-image: url("images/background-image.jpg");
+                color: antiquewhite;
+            }
+        </style>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </head>
     <body>
         <form action="contact-confirm.html" type="POST">
@@ -14,7 +22,7 @@
             <br />
             <input type="checkbox" name="terms" value="terms">Do you accept the terms of agreement?<br />
             <br />
-            <button type="submit" id="btnsubmit">Submit</button>
+            <button type="submit" id="btnsubmit" class="btn btn-primary">Submit</button>
         </form>
     </body>
 </html>
