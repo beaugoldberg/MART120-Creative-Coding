@@ -1,0 +1,14 @@
+ul {
+    border: 1px;
+    border-color: chartreuse;
+    border-style: groove;
+}
+
+.boldlink {
+    font-weight: bold;
+}
+
+#pagereference {
+    color: darkgoldenrod;
+    font-family: Arial, Helvetica, sans-serif;
+}
