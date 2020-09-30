@@ -4,11 +4,6 @@ ul {
     border-style: groove;
 }
 
-body {
-    background-image: url("images/background-image.jpg");
-    color: antiquewhite;
-}
-
 .boldlink {
     font-weight: bold;
 }
