@@ -32,7 +32,7 @@
 
             function checkAnswer()
             {
-                if (numQuestions == 10) { document.getElementById("answer").value = " " }
+                if (numQuestions == 10) { document.getElementById("answer").value = "" }
                 else 
                 {
                     var answer = document.getElementById("answer").value;
@@ -45,7 +45,7 @@
                     numCorrect += 1;
                     printQuestion();
                 }
-                else if (numQuestions == 10 && answer == "") { numTotal = 10; }
+                else if (numQuestions == 10 && answer == "") { }
                 else 
                 { 
                     document.getElementById("result").innerHTML = "Incorrect! The answer was " + actualAnswer; 
