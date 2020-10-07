@@ -32,25 +32,28 @@
 
             function checkAnswer()
             {
-                if (numQuestions == 10) { document.getElementById("answer").value = "" }
+                if (numQuestions == 10) 
+                { 
+                    document.getElementById("answer").value = "" 
+                    printQuestion();
+                }
                 else 
                 {
                     var answer = document.getElementById("answer").value;
                     document.getElementById("answer").value = "";
-                }
 
-                if (answer == actualAnswer) 
-                { 
-                    document.getElementById("result").innerHTML = "Correct!";
-                    numCorrect += 1;
-                    printQuestion();
-                }
-                else if (numQuestions == 10 && answer == "") { }
-                else 
-                { 
-                    document.getElementById("result").innerHTML = "Incorrect! The answer was " + actualAnswer; 
-                    numIncorrect += 1;
-                    printQuestion();
+                    if (answer == actualAnswer) 
+                    { 
+                        document.getElementById("result").innerHTML = "Correct!";
+                        numCorrect += 1;
+                        printQuestion();
+                    }
+                    else 
+                    { 
+                        document.getElementById("result").innerHTML = "Incorrect! The answer was " + actualAnswer; 
+                        numIncorrect += 1;
+                        printQuestion();
+                    }
                 }
             }
 
