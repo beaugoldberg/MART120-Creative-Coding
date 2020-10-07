@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Math Game</title>
+        <meta charset="UTF-8">
+        <meta name="author" content="Beau Goldberg">
+        <meta name="description" content="Math game">
+        <script>
+            var number1, number2, actualAnswer; 
+            var numTotal = 10;
+            var numCorrect = 0;
+            var numIncorrect = 0;
+            var numQuestions = 0;
+
+            function printQuestion()
+            {
+                if (numQuestions == 10) 
+                {
+                    document.getElementById("finalresult").innerHTML = "You got " + (numCorrect/numTotal)*100 + "% correct. " + numCorrect + " correct and " + numIncorrect + " incorrect out of " + numTotal;
+                }
+                else
+                {
+                    numQuestions += 1;
+                    document.getElementById("questionNum").innerHTML = "Question " + numQuestions;
+                    number1 = Math.floor(Math.random() * 20);
+                    number2 = Math.floor(Math.random() * 20);
+                    actualAnswer = number1 + number2;
+                    document.getElementById("question").innerHTML = "What is " + number1 + "+" + number2 + "?";
+                }
+            }
+
+            function checkAnswer()
+            {
+                var answer = document.getElementById("answer").value;
+                document.getElementById("answer").value = "";
+                if (answer == actualAnswer) 
+                { 
+                    document.getElementById("result").innerHTML = "Correct!";
+                    numCorrect += 1;
+                    printQuestion();
+                }
+                else 
+                { 
+                    document.getElementById("result").innerHTML = "Incorrect! The answer was " + actualAnswer; 
+                    numIncorrect += 1;
+                    printQuestion();
+                }
+            }
+
+            function mathGame()
+            {
+                printQuestion();
+            }
+        </script>
+    </head>
+
+    <body onload="mathGame();">
+        <h1>Welcome to our game!</h1>
+        <h2 id="questionNum"></h2>
+        <label id="question"></label>
+        <br/>
+        <input type="text" id="answer">
+        <br/><br/>
+        <button id="sumbit" onclick="checkAnswer();">Submit</button>
+        <br/><br/>
+        <label id="result" style="font-weight: bold;"></label>
+        <br/>
+        <br />
+        <label id="finalresult"></label>
+        <br/>
+        <p id="finalRef1"><a id="link1" href="game.html">Click here</a> to reset the game</p>
+        <p id="finalRef2"><a id="link2" href="index.html">Click here</a> to go back to the homepage</p>
+    </body>
+</html>

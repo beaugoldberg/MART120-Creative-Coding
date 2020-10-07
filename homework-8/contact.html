@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Contact Form</title>
+        <meta charset="UTF-8">
+        <meta name="author" content="Beau Goldberg">
+        <meta name="description" content="Contact form for the user">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script>
+            function formValidation()
+            {
+                var name = document.getElementById("fullname").value;
+                var email = document.getElementById("email").value;
+                var termchk = document.getElementById("termChk");
+
+                if (name == "") 
+                { 
+                    document.getElementById("valName").innerHTML = "*required"; 
+                    document.getElementById("fullname").focus();
+                }
+                else { document.getElementById("valName").innerHTML = ""; }
+
+                if (email == "") 
+                { 
+                    document.getElementById("valEmail").innerHTML = "*required"; 
+                    if (name != "") { document.getElementById("email").focus(); }
+                }
+                else { document.getElementById("valEmail").innerHTML = ""; }
+
+                if (!termchk.checked) 
+                { 
+                    document.getElementById("valTerms").innerHTML = "*required"; 
+                }
+                else { document.getElementById("valTerms").innerHTML = ""; }
+
+                if (name != "" && email != "" && termchk.checked)
+                {
+                    window.location = "contact-confirm.html";
+                }
+            }
+        </script>
+    </head>
+    <body style="background-color: bisque; padding: 10px;">
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" id="fullname"><br /></td>
+                <td><label id="valName" style="color: red;"></label></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" id="email"><br /></td>
+                <td><label id="valEmail" style="color: red;"></label></td>
+            </tr>
+        </table>
+        <br/>
+        <input type="checkbox" id="termChk" name="terms" value="terms"> Do you accept the terms of agreement?
+        <label id="valTerms" style="color: red;"></label>
+        <br/><br/>
+        <button type="submit" id="btnsubmit" class="btn btn-primary" onclick="formValidation();">Submit</button>
+    </body>
+</html>
