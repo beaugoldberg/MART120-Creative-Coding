@@ -32,14 +32,20 @@
 
             function checkAnswer()
             {
-                var answer = document.getElementById("answer").value;
-                document.getElementById("answer").value = "";
+                if (numQuestions == 10) { document.getElementById("answer").value = " " }
+                else 
+                {
+                    var answer = document.getElementById("answer").value;
+                    document.getElementById("answer").value = "";
+                }
+
                 if (answer == actualAnswer) 
                 { 
                     document.getElementById("result").innerHTML = "Correct!";
                     numCorrect += 1;
                     printQuestion();
                 }
+                else if (numQuestions == 10 && answer == "") { }
                 else 
                 { 
                     document.getElementById("result").innerHTML = "Incorrect! The answer was " + actualAnswer; 
