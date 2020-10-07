@@ -45,7 +45,7 @@
                     numCorrect += 1;
                     printQuestion();
                 }
-                else if (numQuestions == 10 && answer == "") { }
+                else if (numQuestions == 10 && answer == "") { numTotal = 10; }
                 else 
                 { 
                     document.getElementById("result").innerHTML = "Incorrect! The answer was " + actualAnswer; 
