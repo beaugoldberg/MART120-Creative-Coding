@@ -8,15 +8,35 @@ var mousey = 0;
 function setup()
 {
     createCanvas(800,600);
+    background(0);
+    drawBarriers();
 }
 
 function draw()
 {
-    // Instantiate background and Player
-    background(0);
+    createPlayer(x,y,diameter);
+    playerController(x,y);
+    createEnemies(x1,x2,x3,y1,y2,y3,diameter1,diameter2,rectXsize,rectYsize);
+    enemyController(x1,x2,x3,y1,y2,y3)
+    chkWinCondition(x,y);
+    placeBarrierOnClick(mousex,mousey);
+}
+
+// -------------------------- Extra Functions ----------------------- //
+function mouseClicked()
+{
+    mousex = mouseX;
+    mousey = mouseY;
+}
+
+function createPlayer(x,y,diameter)
+{
     fill("yellow");
     circle(x,y,diameter);
+}
 
+function drawBarriers()
+{
     // Canvas Barriers
     fill("blue");
     rect(0,0,800,20);
@@ -29,7 +49,10 @@ function draw()
     fill("red");
     textSize(24);
     text("Exit ->",720,450);
+}
 
+function chkWinCondition(x,y)
+{
     // Win Condition Check
     if (x > 800 && (y > 410 && y < 480)) 
     {
@@ -37,7 +60,10 @@ function draw()
         textSize(48);
         text("You Win!!",320,100);
     }
+}
 
+function createEnemies(x1,x2,x3,y1,y2,y3,diameter1,diameter2,rectXsize,rectYsize)
+{
     // Instantiates Enemy Circles
     fill("red");
     circle(x1,y1,diameter1);
@@ -45,7 +71,10 @@ function draw()
     circle(x2,y2,diameter2);
     fill("pink");
     rect(x3,y3,rectXsize,rectYsize);
+}
 
+function enemyController(x1,x2,x3,y1,y2,y3)
+{
     // Moves Enemies Over Time
     x1 += 10; y1 += 4;
     x2 -= 10; y2 += 5;
@@ -68,23 +97,23 @@ function draw()
     else if (x3 < 0) { x3 = 800; }
     if (y3 < 0) { y3 = 600; }
     else if (y3 > 600) { y3 = 0; }
+}
 
+function playerController(x,y)
+{
     // Player Movement
     if (keyIsDown(65)) { x -= 5; }
     if (keyIsDown(68)) { x += 5; }
     if (keyIsDown(87)) { y -= 5; }
     if (keyIsDown(83)) { y += 5; }
+}
 
+function placeBarrierOnClick(mousex,mousey)
+{
     // Barrier Placement With Mouse
     if (mousex != 0 && mousey != 0) 
     { 
         fill("green");
         rect(mousex,mousey,20,50); 
     }
-}
-
-function mouseClicked()
-{
-    mousex = mouseX;
-    mousey = mouseY;
 }
