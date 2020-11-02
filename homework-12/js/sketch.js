@@ -8,61 +8,45 @@ var mousey = 0;
 function setup()
 {
     createCanvas(800,600);
-    background(0);
-    drawBarriers();
 }
 
 function draw()
 {
-    createPlayer(x,y,diameter);
-    playerController(x,y);
-    createEnemies(x1,x2,x3,y1,y2,y3,diameter1,diameter2,rectXsize,rectYsize);
-    enemyController(x1,x2,x3,y1,y2,y3)
-    chkWinCondition(x,y);
+    background(0);
+    buildBarriers();
+    drawPlayer(x,y,diameter);
+    [x,y] = playerController(x,y);
+    drawEnemies(x1,x2,x3,y1,y2,y3,diameter1,diameter2,rectXsize,rectYsize);
+    [x1,x2,x3,y1,y2,y3] = enemyController(x1,x2,x3,y1,y2,y3);
     placeBarrierOnClick(mousex,mousey);
+    chkWinCondition();
 }
 
-// -------------------------- Extra Functions ----------------------- //
+// ---------------------------- Extra Functions ------------------------------- //
 function mouseClicked()
 {
     mousex = mouseX;
     mousey = mouseY;
 }
 
-function createPlayer(x,y,diameter)
+function drawPlayer(x,y,diameter)
 {
     fill("yellow");
     circle(x,y,diameter);
 }
 
-function drawBarriers()
+function playerController(x,y)
 {
-    // Canvas Barriers
-    fill("blue");
-    rect(0,0,800,20);
-    rect(0,580,800,20);
-    rect(0,0,20,600);
-    rect(780,0,20,410);
-    rect(780,480,20,120);
+    // Player Movement
+    if (keyIsDown(65)) { x -= 5; }
+    if (keyIsDown(68)) { x += 5; }
+    if (keyIsDown(87)) { y -= 5; }
+    if (keyIsDown(83)) { y += 5; }
 
-    // Exit Text
-    fill("red");
-    textSize(24);
-    text("Exit ->",720,450);
+    return [x,y];
 }
 
-function chkWinCondition(x,y)
-{
-    // Win Condition Check
-    if (x > 800 && (y > 410 && y < 480)) 
-    {
-        fill("white");
-        textSize(48);
-        text("You Win!!",320,100);
-    }
-}
-
-function createEnemies(x1,x2,x3,y1,y2,y3,diameter1,diameter2,rectXsize,rectYsize)
+function drawEnemies(x1,x2,x3,y1,y2,y3,diameter1,diameter2,rectXsize,rectYsize)
 {
     // Instantiates Enemy Circles
     fill("red");
@@ -97,15 +81,35 @@ function enemyController(x1,x2,x3,y1,y2,y3)
     else if (x3 < 0) { x3 = 800; }
     if (y3 < 0) { y3 = 600; }
     else if (y3 > 600) { y3 = 0; }
+
+    return [x1,x2,x3,y1,y2,y3];
 }
 
-function playerController(x,y)
+function buildBarriers()
 {
-    // Player Movement
-    if (keyIsDown(65)) { x -= 5; }
-    if (keyIsDown(68)) { x += 5; }
-    if (keyIsDown(87)) { y -= 5; }
-    if (keyIsDown(83)) { y += 5; }
+    // Canvas Barriers
+    fill("blue");
+    rect(0,0,800,20);
+    rect(0,580,800,20);
+    rect(0,0,20,600);
+    rect(780,0,20,410);
+    rect(780,480,20,120);
+
+    // Exit Text
+    fill("red");
+    textSize(24);
+    text("Exit ->",720,450);
+}
+
+function chkWinCondition()
+{
+    // Win Condition Check
+    if (x > 800 && (y > 410 && y < 480)) 
+    {
+        fill("white");
+        textSize(48);
+        text("You Win!!",320,100);
+    }
 }
 
 function placeBarrierOnClick(mousex,mousey)
